@@ -1,5 +1,8 @@
 # Postify
 
+If you don't have time, I posted a short video that briefly presents the task:
+https://www.youtube.com/watch?v=nHV4P2ulmYE
+
 App Details:
 Users can register. Also create a login & logout module.
 User can create a post.
