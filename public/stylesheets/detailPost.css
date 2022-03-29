@@ -1,0 +1,160 @@
+body {
+    font-family: "Times New Roman", Georgia, serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.background{
+    background-image: url("../images/background.jpg");
+}
+.container{
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 7% !important;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    filter: drop-shadow(0px 9px 5px black);
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    filter: drop-shadow(0px 4px 2px black);
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 6px 9px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: cornflowerblue;}
+
+ul.topnav li a.active {background-color: cornflowerblue;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+.margin{
+    margin: 0.5%;
+}
+.btn-create{
+    background-color: #1f8dba;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 3%;
+    padding: 1%;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 58vh;
+}
+.h1{
+    margin-top: 4%;
+}
+
+
+.container-new {
+    border: 1px solid #eee;
+    max-width: 640px;
+    margin: 4% 0% 6% 16%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+.row{
+    margin-left: 40%;
+    text-align: center;
+}
+.col-6{
+    margin: 2% 0% 1% 25%;
+}
+.comment {
+    display: flex;
+    flex: 1;
+    transition: all 1s;
+    flex-direction: column;
+    margin: 3%;
+}
+.commentClicked {
+    min-height: 0px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px 10px
+}
+.container-new input {
+    width: 100%;
+    border: none;
+    background: #E8E8E8;
+    padding: 5px 10px;
+    height: 50%;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 2px solid #016BA8;
+    transition: all 0.5s;
+    margin-top: 15px;
+}
+button.primaryContained {
+    background: #016ba8;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    margin-top: 0px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+    transition: 1s all;
+    font-size: 10px;
+    border-radius: 5px;
+}
+button.primaryContained:hover {
+    background: #9201A8;
+}
+.commentWithBorder{
+    display: flex;
+    margin: 3%;
+    flex: 1;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 4px;
+    text-align: center;
+}
+.commentWithBorderH1{
+    font-weight: bold;
+    font-size: 18px;
+}
+.commentWithBorderTEXT{
+    font-size: 14px;
+}
+.twoInOne{
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 2% 15%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background: white;
+}
+.labelPost{
+ font-weight: bold;
+    margin: 3% 1% 1% 1%;
+}

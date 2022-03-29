@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail post</title>
+    <link rel='stylesheet' href='/stylesheets/detailPost.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<script>
+    function comment(idPost,idUser){
+        newComment = document.getElementById("comment").value;
+        if(idUser>0){
+            $.ajax({
+                url:"/postify/newComment/" +  idPost + "/" + newComment,
+                data:{},
+                type:"post",
+                beforeSend: function (){
+                }
+            }).done(function (data){
+                $.ajax({
+                    url:"/postify/comment_count/" +  idPost,
+                    data:{},
+                    type:"post",
+                    beforeSend: function (){
+                    }
+                }).done(function (data){
+                    window.location.reload();
+                });
+            });
+        }
+        else{
+            $.ajax({
+                url:"/postify/login",
+                data:{},
+                type:"get",
+                beforeSend: function (){
+                }
+            }).done(function (data){
+                window.location.href="/postify/login"
+            });
+        }
+
+
+    }
+</script>
+<body class="background">
+<ul class="topnav">
+    <li><a href="/postify/home">Home</a></li>
+    <li><a  href="/postify/myPosts">My Posts</a></li>
+    <li><a  href="/postify/newPost">New Post</a></li>
+    <li class="right"><a href="/postify/logout">Log out</a></li>
+</ul>
+
+<div class="container">
+<%for(let i=0;i<posts.length;i++){ %>
+<div class="twoInOne">
+    <h2><%=posts[i].title%></h2>
+    <label class="labelPost">Author:</label>
+    <span><%=posts[i].author%></span>
+    <label class="labelPost">Date:</label>
+    <span><%=posts[i].submission_date%></span>
+    <p style="margin-top: 8%"><%=posts[i].description%></p>
+</div>
+<%}%>
+
+    <section id="app">
+        <div class="container-new">
+            <div class="row">
+                <div class="col-6">
+                    <h4><%=comments.length%> Comments:</h4>
+                    <div class="comment">
+                    <%for(let j=0;j<comments.length;j++){ %>
+                        <div class="commentWithBorder">
+                           <div class="commentWithBorderH1"><span style="margin-top: 3%"><%=comments[j].username%></span></div>
+                            <div class="commentWithBorderTEXT"><span style="margin-top: 3%"><%=comments[j].text%></span></div>
+                        </div>
+                <%}%>
+                    </div><!--End Comment-->
+                </div><!--End col -->
+            </div><!-- End row -->
+            <div class="row">
+                <div class="col-6">
+                    <span><input class="input" type="text" name="newComment" placeholder="Add comment" id="comment"></span>
+                    <button onclick="comment('<%=idPost%>','<%=idUser%>')" class='primaryContained float-right' type="button">Add Comment</button>
+                </div><!-- End col -->
+            </div><!--End Row -->
+        </div><!--End Container -->
+    </section><!-- end App -->
+
+</div>
+
+</body>
+</html>
+
+
+<!--<div class="container2">
+    <h4></%=comments.length%/> Comments:</h4>
+    </%for(let j=0;j<comments.length;j++){ %/>
+    <span style="margin-top: 3%"></%=comments[j].username%/></span>
+    <span style="margin-top: 3%"></%=comments[j].text%/></span>
+    </%}%/>
+    <span><input type="text" name="newComment" placeholder="Add comment" id="comment"></span>
+    <button type="button" class="btn-update" onclick="comment('</%=idPost%/>','</%=idUser%/>')">Comment</button>
+</div> -->

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Posts</title>
+    <link rel='stylesheet' href='/stylesheets/myPosts.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function updatePost(id){
+            title = document.getElementById("title"+id).value;
+            author = document.getElementById("author"+id).value;
+            description = document.getElementById("description" + id).value;
+
+            $.ajax({
+                url:"/postify/updatePost/" + title + "/" + author + "/" + description + "/" + id,
+                data:{},
+                type:"POST",
+                beforeSend: function (){
+                }
+            }).done(function (data){
+                window.location.reload();
+            });
+        }
+
+        function deletePost(id){
+            $.ajax({
+                url:"/postify/deletePost/"  + id,
+                data:{},
+                type:"delete",
+                beforeSend: function (){
+                }
+            }).done(function (data){
+                window.location.reload();
+            });
+        }
+    </script>
+
+</head>
+<body class="background">
+<ul class="topnav">
+    <li><a href="/postify/home">Home</a></li>
+    <li><a class="active" href="/postify/myPosts">My Posts</a></li>
+    <li><a href="/postify/newPost">New Post</a></li>
+    <li class="right"><a href="/postify/logout">Log out</a></li>
+</ul>
+<div class="container">
+    <%for(let i=0;i<myPost.length;i++){ %>
+        <div class="twoInOne">
+            <div class="upper">
+                <span class="black">Title:</span>
+               <input class="my-input" type="text" name="title" value="<%=myPost[i].title%>" id="title<%=myPost[i].id_post%>">
+                <span class="black">Author:</span>
+                 <input class="my-input" type="text" name="author" value="<%=myPost[i].author%>" id="author<%=myPost[i].id_post%>">
+                <span class="black">Description:</span>
+                <input class="my-input-long" type="text" name="description" value="<%=myPost[i].description%>" id="description<%=myPost[i].id_post%>">
+            </div>
+            <div class="lower">
+                <button type="button" class="btn-edit" onclick="updatePost('<%=myPost[i].id_post%>')">Edit</button>
+                <%if(myPost[i].comment_count > 0){%>
+                <h4>Comment count: <%=myPost[i].comment_count%></h4>
+                <span style="color: red">This post can't be deleted becouse <%=myPost[i].comment_count%> people commented on it.</span>
+                <%}
+                else {%>
+                <button type="button" class="btn-delete" onclick="deletePost('<%=myPost[i].id_post%>')">Delete</button>
+                <%}%>
+            </div>
+
+        </div>
+    <%}%>
+</div>
+
+
+
+</body>
+</html>
+
+
+<!--</%for(let i=0;i<myPost.length;i++){ %/>
+<div class="container2">
+    <h2><input type="text" name="title" value="</%=myPost[i].title%/>" id="title</%=myPost[i].id_post%/>"></h2>
+    <input type="text" name="author" value="</%=myPost[i].author%/>" id="author</%=myPost[i].id_post%/>">
+    <input type="text" name="description" value="</%=myPost[i].description%/>" id="description</%=myPost[i].id_post%/>">
+    <button type="button" class="btn-update" onclick="updatePost('</%=myPost[i].id_post%/>')">Edit</button>
+    </%if(myPost[i].comment_count > 0){%/>
+        <h4>Comment count: </%=myPost[i].comment_count%/></h4>
+        <span style="color: red">This post can't be deleted becouse </%=myPost[i].comment_count%/> people commented on it.</span>
+    </%} else {%/>
+        <button type="button" class="btn-delete" onclick="deletePost('</%=myPost[i].id_post%/>')">Delete</button>
+    </%}%/>
+
+
+</div>
+</%}%/>-->

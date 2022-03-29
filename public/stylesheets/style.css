@@ -1,0 +1,92 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.welcome{
+  background-image: url("../images/postify2.jpg");
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}
+.container{
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 3%;
+  padding: 2%;
+  background-color: lightblue;
+}
+.container2{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 3%;
+  padding: 2%;
+  background-color: lightblue;
+}
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+  filter: drop-shadow(0px 4px 2px black);
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 6px 9px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #00B7FF;}
+
+ul.topnav li a.active {background-color: #00B7FF;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right,
+  ul.topnav li {float: none;}
+}
+
+.btn-update{
+  width: 100px;
+  background-color: #d3a46a;
+  border: none;
+  color: white;
+  padding: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 1%;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.btn-delete{
+  width: 100px;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 1%;
+  cursor: pointer;
+  border-radius: 4px;
+}
